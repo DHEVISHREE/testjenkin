@@ -1,0 +1,18 @@
+node {
+    environment {
+        dockerImage = ''
+    }
+    stage('Checkout') {
+        checkout scm
+    }
+    stage('Build Docker Image') {
+        // fix <pathandfilenameToDockerfile> - it is relative pathing
+        dockerImage = docker.build('usp/postgres-with-ssl', '.')
+    }
+    stage('Publish to Nexus') {
+        docker.withRegistry( 'https://nexus-ssv-prod.optimiseprime.local:5000', 'usp-private-docker-registry' ) {
+            dockerImage.push("9.6")
+            dockerImage.push()
+          }
+    }
+}

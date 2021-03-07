@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>DASP-Question-paper</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  
+
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+  .bt{
+    border: 1px solid transparent !important;
+  }
+  .bta{
+    border: 1px solid black !important;
+  }
+  th{
+      text-align: center;
+  }
+  .btr{
+      border-right: 1px solid black;
+  }
+  </style>
+</head>
+
+<body style="font-size: 12px;border:2px solid black; ">
+    <div class="h-100">
+    <!-- <img src="https://www.gstatic.com/webp/gallery/1.jpg" style="width:100%;"> -->
+
+    <img src="http://dastp.s3-ap-southeast-1.amazonaws.com/logo.jpg" style="width:100%;">
+
+        <div class="container" style="text-align:center;">
+          <h4 ><b> <u > {{examName}}</u> </b></h4>
+          <div style="text-align: center"><h5><b>  {{courseCode}}-{{courseName}} (Semester {{semester}})-{{questionPaperCode}}</b></h5></div>
+                     
+
+          <div class="container">
+              <div class="pull-left"><b>Time&nbsp;:&nbsp;{{duration}} Minutes</b></div>
+              <div class="pull-right"><b>Total Mark:&nbsp;&nbsp;{{totalMark}}</b></div><br>
+              <div ><i>Answer All questions</i></div>
+              <div  ><i>All questions carry equal marks</i></div>
+          </div>
+                
+          {%for i in questions %}
+
+          <div class="col-md-3" style="text-align: right;"><b>Mark&nbsp;:&nbsp;{{i["individualMark"]}}</b></div>
+          <div style="width:100%;background-color: green;margin: 10px">
+                    <div style="text-align: left"><b>{{ loop.index }}.{{i["question"]}}</b> 
+
+                    </div>
+                    <h5 style="text-align: left;color:blue"><u>options</u></h5>
+
+                    <div style="width:100%;margin-left: 10px;text-align: left">
+                      <ol>
+                    {%for j  in i["optionsList"]%}
+
+                        <li style="text-align: left">{{j}}</li>
+                    {%endfor%}
+
+                      </ol>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+          {%endfor%}
+        </div>
+       
+</body>
+</html>
